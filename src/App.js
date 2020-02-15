@@ -9,25 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      nextId: 3,
+      nextId: 0,
       choosenCategory: 'all',
-      tasks: [
-        {
-          id: 0,
-          text: 'take a rest',
-          done: false,
-        },
-        {
-          id: 1,
-          text: 'make cleaning',
-          done: false,
-        },
-        {
-          id: 2,
-          text: 'play football',
-          done: false,
-        },
-      ],
+      tasks: [],
     }
   }
   
@@ -125,11 +109,16 @@ class App extends React.Component {
   
   
   checkAllSelected = () => {
+    if (this.state.tasks.length === 0){
+      return false;
+    }
+    
     for (let item of this.state.tasks) {
       if ( !item.done) {
         return false;
       }
     }
+    
     return true;
   }
   

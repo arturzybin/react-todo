@@ -15,6 +15,7 @@ class TaskList extends React.Component {
           data={item}
           onTaskDone={this.props.onTaskDone}
           onTextChange={this.props.onTextChange}
+          onDeleteTask={this.props.onDeleteTask}
         />
       )
     })
@@ -33,8 +34,6 @@ class TaskList extends React.Component {
 
 TaskList.propTypes = {
   data: PropTypes.array.isRequired,
-  onTaskDone: PropTypes.func.isRequired,
-  onTextChange: PropTypes.func.isRequired,
 }
 
 export { TaskList }

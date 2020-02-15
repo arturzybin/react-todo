@@ -50,6 +50,17 @@ class App extends React.Component {
     })
   }
   
+  handleDeleteTask = (id) => {
+    const index = this.state.tasks.findIndex((item) => item.id === id);
+    
+    const newTasks = this.state.tasks.slice();
+    newTasks.splice(index, 1);
+    
+    this.setState({
+      tasks: newTasks,
+    })
+  }
+  
   render() {
     return(
       <div className="todo">
@@ -57,6 +68,7 @@ class App extends React.Component {
           data={this.state.tasks}
           onTaskDone={this.handleDoneTask}
           onTextChange={this.handleTextChange}
+          onDeleteTask={this.handleDeleteTask}
         />
       </div>
     )

@@ -46,7 +46,10 @@ class Task extends React.Component {
           <span className="task__checkmark">&#10004;</span>
         </label>
         <span onDoubleClick={this.handleDoubleClick} className={"task__text" + textClassName}>{text}</span>
-        <button className="task__destroy"></button>
+        <button
+          className="task__destroy"
+          onClick={() => this.props.onDeleteTask(id)}
+        ></button>
       </div>
     )
   }
@@ -60,6 +63,7 @@ Task.propTypes = {
   }),
   onTaskDone: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
 }
 
 export { Task }

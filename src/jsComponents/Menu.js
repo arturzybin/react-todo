@@ -31,7 +31,12 @@ class Menu extends React.Component {
           <button className="menu__completed-tasks" data-value="completed">Completed</button>
         </nav>
         
-        <button className="menu__clear-completed">Clear<br/>completed</button>
+        <button
+          className="menu__clear-completed"
+          onClick={this.props.onClearCompleted}
+        >
+          Clear<br/>completed
+        </button>
       </div>
     )
   }
@@ -40,6 +45,7 @@ class Menu extends React.Component {
 
 Menu.propTypes = {
   onChangeCategory: PropTypes.func.isRequired,
+  onClearCompleted: PropTypes.func.isRequired,
 }
 
 export {Menu};

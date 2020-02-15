@@ -55,6 +55,7 @@ class TaskList extends React.Component {
 
 TaskList.propTypes = {
   data: PropTypes.array.isRequired,
+  category: PropTypes.string.isRequired,
 }
 
 export { TaskList }

@@ -89,13 +89,24 @@ class App extends React.Component {
       choosenCategory: category,
     })
   }
-
+  
+  
+  clearCompleted = () => {
+    let newTasks = this.state.tasks.slice();
+    newTasks = newTasks.filter(item => !item.done)
+    this.setState({
+      tasks: newTasks,
+    })
+  }
   
   
   render() {
     return(
       <div className="todo">
-        <Menu onChangeCategory={this.changeCategory}/>
+        <Menu
+          onChangeCategory={this.changeCategory}
+          onClearCompleted={this.clearCompleted}
+        />
         
         <div className="todo__body">
           <Add onAddTask={this.addTask} />

@@ -9,6 +9,7 @@ class Add extends React.Component {
     document.removeEventListener('keypress', this.submit)
   }
   
+  
   submit = (event) => {
     const input = document.querySelector('.add__text')
     if (event.code !== 'Enter') return;
@@ -17,10 +18,11 @@ class Add extends React.Component {
     if (text === '') return;
     this.props.onAddTask(text);
   }
-    
+  
+  
   render() {
     return (
-      <div className="todo__add add">
+      <div className="add">
         <input
           className="add__text"
           type='text'

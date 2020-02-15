@@ -5,7 +5,7 @@ import { Task } from './Task.js'
 
 class TaskList extends React.Component {
   renderTasks = () => {
-    const tasks = this.sortTasks(this.props.data);
+    const tasks = this.sortTasks(this.props.data, this.props.category);
     let tasksListTemplate = [];
     
     tasksListTemplate = tasks.map((item) => {
@@ -13,7 +13,7 @@ class TaskList extends React.Component {
         <Task
           key={item.id}
           data={item}
-          onTaskDone={this.props.onTaskDone}
+          onTaskToggle={this.props.onTaskToggle}
           onTextChange={this.props.onTextChange}
           onDeleteTask={this.props.onDeleteTask}
         />
@@ -23,18 +23,26 @@ class TaskList extends React.Component {
     return tasksListTemplate;
   }
   
-  sortTasks = (tasks) => {
-    const doneTasks = tasks.filter((item) => item.done);
-    const undoneTasks = tasks.filter((item) => !item.done);
+  
+  sortTasks = (tasks, category) => {
+    const completedTasks = tasks.filter((item) => item.done);
+    const activeTasks = tasks.filter((item) => !item.done);
     
-    doneTasks.sort( (item1, item2) => (item1.id > item2.id ? 1 : -1) )
-    undoneTasks.sort( (item1, item2) => (item1.id > item2.id ? 1 : -1) )
+    completedTasks.sort( (item1, item2) => (item1.id > item2.id ? 1 : -1) )
+    activeTasks.sort( (item1, item2) => (item1.id > item2.id ? 1 : -1) )
     
-    doneTasks.reverse();
-    undoneTasks.reverse();
+    completedTasks.reverse();
+    activeTasks.reverse();
     
-    return undoneTasks.concat(doneTasks)
+    if (category === 'active'){
+      return activeTasks;
+    } else if (category === 'completed') {
+      return completedTasks;
+    } else {
+      return activeTasks.concat(completedTasks);
+    }
   }
+  
   
   render() {
     return(

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import { TaskList } from './jsComponents/TaskList.js';
 import { Add } from './jsComponents/Add.js';
+import { Menu } from './jsComponents/Menu.js';
 
 
 class App extends React.Component {
@@ -9,6 +10,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       nextId: 3,
+      choosenCategory: 'all',
       tasks: [
         {
           id: 0,
@@ -29,7 +31,8 @@ class App extends React.Component {
     }
   }
   
-  handleDoneTask = (id) => {
+  
+  toggleTask = (id) => {
     const index = this.state.tasks.findIndex((item) => item.id === id);
     
     const newTasks = this.state.tasks.slice();
@@ -39,6 +42,7 @@ class App extends React.Component {
       tasks: newTasks,
     })
   }
+  
   
   changeTaskText = (id, text) => {
     const index = this.state.tasks.findIndex((item) => item.id === id);
@@ -51,6 +55,7 @@ class App extends React.Component {
     })
   }
   
+  
   deleteTask = (id) => {
     const index = this.state.tasks.findIndex((item) => item.id === id);
     
@@ -61,6 +66,7 @@ class App extends React.Component {
       tasks: newTasks,
     })
   }
+  
   
   addTask = (text) => {
     const id = this.state.nextId;
@@ -77,16 +83,31 @@ class App extends React.Component {
     })
   }
   
+  
+  changeCategory = (category) => {
+    this.setState({
+      choosenCategory: category,
+    })
+  }
+
+  
+  
   render() {
     return(
       <div className="todo">
-        <Add onAddTask={this.addTask} />
-        <TaskList
-          data={this.state.tasks}
-          onTaskDone={this.handleDoneTask}
-          onTextChange={this.changeTaskText}
-          onDeleteTask={this.deleteTask}
-        />
+        <Menu onChangeCategory={this.changeCategory}/>
+        
+        <div className="todo__body">
+          <Add onAddTask={this.addTask} />
+          
+          <TaskList
+            data={this.state.tasks}
+            category={this.state.choosenCategory}
+            onTaskToggle={this.toggleTask}
+            onTextChange={this.changeTaskText}
+            onDeleteTask={this.deleteTask}
+          />
+        </div>
       </div>
     )
   }

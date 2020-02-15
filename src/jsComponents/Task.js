@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class Task extends React.Component {
   
@@ -35,17 +35,19 @@ class Task extends React.Component {
     const textClassName = (done ? ' task__text_done' : '');
     
     return(
-      <div className="todo__task task">
-        <label className="task__checkbox-container">
+      <div className="task">
+        <label className="checkbox">
           <input
-            className="task__checkbox"
+            className="checkbox__input"
             type='checkbox'
             checked={done}
-            onChange={() => this.props.onTaskDone(id)}
+            onChange={() => this.props.onTaskToggle(id)}
           />
-          <span className="task__checkmark">&#10004;</span>
+          <span className="checkbox__checkmark">&#10004;</span>
         </label>
+        
         <div className={"task__text" + textClassName} onDoubleClick={this.handleDoubleClick}>{text}</div>
+        
         <button
           className="task__destroy"
           onClick={() => this.props.onDeleteTask(id)}
@@ -61,7 +63,7 @@ Task.propTypes = {
     text: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
   }),
-  onTaskDone: PropTypes.func.isRequired,
+  onTaskToggle: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onDeleteTask: PropTypes.func.isRequired,
 }

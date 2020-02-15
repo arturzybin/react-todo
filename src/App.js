@@ -100,12 +100,52 @@ class App extends React.Component {
   }
   
   
+  selectAll = () => {
+    let newTasks = this.state.tasks.slice();
+    newTasks = newTasks.map(item => {
+      item.done = true;
+      return item;
+    });
+    this.setState({
+      tasks: newTasks,
+    })
+  }
+  
+  
+  unselectAll = () => {
+    let newTasks = this.state.tasks.slice();
+    newTasks = newTasks.map(item => {
+      item.done = false;
+      return item;
+    });
+    this.setState({
+      tasks: newTasks,
+    })
+  }
+  
+  
+  checkAllSelected = () => {
+    for (let item of this.state.tasks) {
+      if ( !item.done) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  
+  
   render() {
+    const allSelected = this.checkAllSelected();
+    
     return(
       <div className="todo">
         <Menu
           onChangeCategory={this.changeCategory}
           onClearCompleted={this.clearCompleted}
+          onSelectAll={this.selectAll}
+          onUnselectAll={this.unselectAll}
+          allSelected={allSelected}
         />
         
         <div className="todo__body">

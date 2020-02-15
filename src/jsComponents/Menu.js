@@ -14,6 +14,16 @@ class Menu extends React.Component {
   }
   
   
+  handleSelectAll = (event) => {
+    const checked = event.target.checked;
+    if (checked) {
+      this.props.onSelectAll();
+    } else {
+      this.props.onUnselectAll();
+    }
+  }
+  
+  
   render() {
     return(
       <div className='menu'>
@@ -21,8 +31,11 @@ class Menu extends React.Component {
           <input
             className="checkbox__input"
             type='checkbox'
+            checked={this.props.allSelected}
+            onChange={this.handleSelectAll}
           />
           <span className="checkbox__checkmark">&#10004;</span>
+          <span className="checkbox__select-all-label">Select<br/>all</span>
         </label>
         
         <nav className="menu__choose-category" onClick={this.handleCategoryChange}>

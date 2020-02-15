@@ -120,6 +120,13 @@
         font-size: 28px;
         transition: .1s;
     }
+    &__select-all-label {
+        position: absolute;
+        text-align: center;
+        left: 40px;
+        top: 13px;
+        font-size: 10px;
+    }
 }
 
 

@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.scss';
 import { TaskList } from './jsComponents/TaskList.js';
+import { Add } from './jsComponents/Add.js';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-     nextId: 3,
+      nextId: 3,
       tasks: [
         {
           id: 0,
@@ -22,7 +23,7 @@ class App extends React.Component {
         {
           id: 2,
           text: 'play football',
-          done: true,
+          done: false,
         },
       ],
     }
@@ -39,7 +40,7 @@ class App extends React.Component {
     })
   }
   
-  handleTextChange = (id, text) => {
+  changeTaskText = (id, text) => {
     const index = this.state.tasks.findIndex((item) => item.id === id);
     
     const newTasks = this.state.tasks.slice();
@@ -50,7 +51,7 @@ class App extends React.Component {
     })
   }
   
-  handleDeleteTask = (id) => {
+  deleteTask = (id) => {
     const index = this.state.tasks.findIndex((item) => item.id === id);
     
     const newTasks = this.state.tasks.slice();
@@ -61,14 +62,30 @@ class App extends React.Component {
     })
   }
   
+  addTask = (text) => {
+    const id = this.state.nextId;
+    const newTasks = this.state.tasks.slice();
+    newTasks.push({
+      id: id,
+      text: text,
+      done: false,
+    })
+    
+    this.setState({
+      nextId: id + 1,
+      tasks: newTasks,
+    })
+  }
+  
   render() {
     return(
       <div className="todo">
+        <Add onAddTask={this.addTask} />
         <TaskList
           data={this.state.tasks}
           onTaskDone={this.handleDoneTask}
-          onTextChange={this.handleTextChange}
-          onDeleteTask={this.handleDeleteTask}
+          onTextChange={this.changeTaskText}
+          onDeleteTask={this.deleteTask}
         />
       </div>
     )

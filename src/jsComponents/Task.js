@@ -45,7 +45,7 @@ class Task extends React.Component {
           />
           <span className="task__checkmark">&#10004;</span>
         </label>
-        <span onDoubleClick={this.handleDoubleClick} className={"task__text" + textClassName}>{text}</span>
+        <div className={"task__text" + textClassName} onDoubleClick={this.handleDoubleClick}>{text}</div>
         <button
           className="task__destroy"
           onClick={() => this.props.onDeleteTask(id)}

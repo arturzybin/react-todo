@@ -16,10 +16,9 @@
 
 .task {
     line-height: 50px;
-    user-select: none;
 
     width: 100%;
-    height: 50px;
+    min-height: 50px;
 
     border-bottom: 1px solid #ededed;
 
@@ -33,6 +32,7 @@
         height: 50px;
 
         vertical-align: top;
+        user-select: none;
     }
     &__checkbox {
         opacity: 0;
@@ -60,11 +60,13 @@
     }
 
     &__text {
+        display: inline-block;
         font-family: 'Sriracha', cursive;
         font-size: 25px;
         width: calc(100% - 100px);
         border: none;
         outline: none;
+        word-wrap: break-word;
         
         &_done {
             text-decoration: line-through;
@@ -110,5 +112,29 @@
         transition: .1s;
 
         opacity: 1;
+    }
+}
+
+
+.add {
+    line-height: 50px;
+
+    width: 100%;
+    height: 50px;
+
+    box-shadow: 0 4px 5px #aaaaaa;
+    
+    &__text {
+        padding: 0 10px;
+        width: 100%;
+        line-height: 50px;
+        border: none;
+        outline: none;
+        font-family: 'Sriracha', cursive;
+        font-size: 25px;
+        
+        &::placeholder {
+            opacity: 0.5;
+        }
     }
 }

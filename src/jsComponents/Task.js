@@ -1,0 +1,65 @@
+import React from 'react';
+import PropTypes from 'prop-types'
+
+class Task extends React.Component {
+  
+  handleDoubleClick = (event) => {
+    const span = event.target;
+    const oldText = span.textContent;
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.classList.add('task__text');
+    input.value = oldText;
+    span.closest('.task').replaceChild(input, span);
+    input.focus();
+    
+    
+    input.onblur = () => {
+      let newText = input.value;
+      if (newText === '') {
+        newText = oldText;
+      };
+      
+      span.textContent = newText;
+      input.closest('.task').replaceChild(span, input);
+      
+      const {id} = this.props.data;
+      this.props.onTextChange(id, newText);
+    }
+  }
+
+
+  render() {
+    const {id, text, done} = this.props.data;
+    const textClassName = (done ? ' task__text_done' : '');
+    
+    return(
+      <div className="todo__task task">
+        <label className="task__checkbox-container">
+          <input
+            className="task__checkbox"
+            type='checkbox'
+            checked={done}
+            onChange={() => this.props.onTaskDone(id)}
+          />
+          <span className="task__checkmark">&#10004;</span>
+        </label>
+        <span onDoubleClick={this.handleDoubleClick} className={"task__text" + textClassName}>{text}</span>
+        <button className="task__destroy"></button>
+      </div>
+    )
+  }
+}
+
+Task.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+  }),
+  onTaskDone: PropTypes.func.isRequired,
+  onTextChange: PropTypes.func.isRequired,
+}
+
+export { Task }

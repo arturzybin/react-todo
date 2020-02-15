@@ -1,26 +1,66 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { TaskList } from './jsComponents/TaskList.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+     nextId: 3,
+      tasks: [
+        {
+          id: 0,
+          text: 'take a rest',
+          done: false,
+        },
+        {
+          id: 1,
+          text: 'make cleaning',
+          done: false,
+        },
+        {
+          id: 2,
+          text: 'play football',
+          done: true,
+        },
+      ],
+    }
+  }
+  
+  handleDoneTask = (id) => {
+    const index = this.state.tasks.findIndex((item) => item.id === id);
+    
+    const newTasks = this.state.tasks.slice();
+    newTasks[index].done = !newTasks[index].done;
+    
+    this.setState({
+      tasks: newTasks,
+    })
+  }
+  
+  handleTextChange = (id, text) => {
+    const index = this.state.tasks.findIndex((item) => item.id === id);
+    
+    const newTasks = this.state.tasks.slice();
+    newTasks[index].text = text;
+    
+    this.setState({
+      tasks: newTasks,
+    })
+  }
+  
+  render() {
+    return(
+      <div className="todo">
+        <TaskList
+          data={this.state.tasks}
+          onTaskDone={this.handleDoneTask}
+          onTextChange={this.handleTextChange}
+        />
+      </div>
+    )
+  }
 }
 
 export default App;

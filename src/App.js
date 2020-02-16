@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+
 import { TaskList } from './jsComponents/TaskList.js';
 import { Add } from './jsComponents/Add.js';
 import { Menu } from './jsComponents/Menu.js';
@@ -142,7 +143,7 @@ class App extends React.Component {
     const allSelected = this.checkAllSelected();
     const {tasks, choosenCategory} = this.state;
     
-    return(
+    return(      
       <div className="todo">
         {tasks.length
           ? <Menu

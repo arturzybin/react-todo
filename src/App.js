@@ -126,23 +126,27 @@ class App extends React.Component {
   
   render() {
     const allSelected = this.checkAllSelected();
+    const {tasks, choosenCategory} = this.state;
     
     return(
       <div className="todo">
-        <Menu
-          onChangeCategory={this.changeCategory}
-          onClearCompleted={this.clearCompleted}
-          onSelectAll={this.selectAll}
-          onUnselectAll={this.unselectAll}
-          allSelected={allSelected}
-        />
+        {tasks.length
+          ? <Menu
+            onChangeCategory={this.changeCategory}
+            onClearCompleted={this.clearCompleted}
+            onSelectAll={this.selectAll}
+            onUnselectAll={this.unselectAll}
+            allSelected={allSelected}
+          />
+          : null
+        }
         
         <div className="todo__body">
           <Add onAddTask={this.addTask} />
           
           <TaskList
-            data={this.state.tasks}
-            category={this.state.choosenCategory}
+            data={tasks}
+            category={choosenCategory}
             onTaskToggle={this.toggleTask}
             onTextChange={this.changeTaskText}
             onDeleteTask={this.deleteTask}

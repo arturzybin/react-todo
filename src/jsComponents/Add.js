@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-class Add extends React.Component {
+class Add extends React.PureComponent {
   addSubmitListener = () => {
     document.addEventListener('keypress', this.submit)
   }
@@ -18,13 +18,8 @@ class Add extends React.Component {
     if (text === '') return;
     this.props.onAddTask(text);
   }
-  
-  
-  shouldComponentUpdate() {
-    return false;
-  }
-  
-  
+
+
   render() {
     return (
       <div className="add">

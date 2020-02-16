@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Menu extends React.Component {
+class Menu extends React.PureComponent {
   
   handleCategoryChange = (event) => {
     const target = event.target;
@@ -23,13 +23,8 @@ class Menu extends React.Component {
       this.props.onUnselectAll();
     }
   }
-  
-  
-  shouldComponentUpdate(nextProps) {
-    return nextProps.allSelected !== this.props.allSelected;
-  }
-  
-  
+
+
   render() {
     return(
       <div className='menu'>

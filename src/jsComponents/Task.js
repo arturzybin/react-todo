@@ -28,6 +28,14 @@ class Task extends React.Component {
       this.props.onTextChange(id, newText);
     }
   }
+  
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.data.done !== this.props.data.done
+      || nextProps.data.text !== this.props.data.text
+    )
+  }
 
 
   render() {

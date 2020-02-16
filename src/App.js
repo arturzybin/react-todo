@@ -17,10 +17,13 @@ class App extends React.Component {
   
   
   toggleTask = (id) => {
-    const index = this.state.tasks.findIndex((item) => item.id === id);
-    
     const newTasks = this.state.tasks.slice();
-    newTasks[index].done = !newTasks[index].done;
+    const index = newTasks.findIndex((item) => item.id === id);
+    
+    newTasks[index] = {
+      ...newTasks[index],
+      done: !newTasks[index].done,
+    };
     
     this.setState({
       tasks: newTasks,
@@ -29,10 +32,13 @@ class App extends React.Component {
   
   
   changeTaskText = (id, text) => {
-    const index = this.state.tasks.findIndex((item) => item.id === id);
-    
     const newTasks = this.state.tasks.slice();
-    newTasks[index].text = text;
+    const index = newTasks.findIndex((item) => item.id === id);
+
+    newTasks[index] = {
+      ...newTasks[index],
+      text: text,
+    };
     
     this.setState({
       tasks: newTasks,
@@ -41,9 +47,9 @@ class App extends React.Component {
   
   
   deleteTask = (id) => {
-    const index = this.state.tasks.findIndex((item) => item.id === id);
-    
     const newTasks = this.state.tasks.slice();
+    const index = newTasks.findIndex((item) => item.id === id);
+    
     newTasks.splice(index, 1);
     
     this.setState({
@@ -86,10 +92,14 @@ class App extends React.Component {
   
   selectAll = () => {
     let newTasks = this.state.tasks.slice();
+    
     newTasks = newTasks.map(item => {
-      item.done = true;
-      return item;
+      return {
+        ...item,
+        done: true,
+      };
     });
+    
     this.setState({
       tasks: newTasks,
     })
@@ -98,10 +108,14 @@ class App extends React.Component {
   
   unselectAll = () => {
     let newTasks = this.state.tasks.slice();
+    
     newTasks = newTasks.map(item => {
-      item.done = false;
-      return item;
+      return {
+        ...item,
+        done: false,
+      };
     });
+    
     this.setState({
       tasks: newTasks,
     })

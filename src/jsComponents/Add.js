@@ -20,6 +20,11 @@ class Add extends React.Component {
   }
   
   
+  shouldComponentUpdate() {
+    return false;
+  }
+  
+  
   render() {
     return (
       <div className="add">

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Menu extends React.Component {
+  
   handleCategoryChange = (event) => {
     const target = event.target;
     if (target.tagName.toLowerCase() !== 'button') return;
@@ -21,6 +22,11 @@ class Menu extends React.Component {
     } else {
       this.props.onUnselectAll();
     }
+  }
+  
+  
+  shouldComponentUpdate(nextProps) {
+    return nextProps.allSelected !== this.props.allSelected;
   }
   
   

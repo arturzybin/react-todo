@@ -11,7 +11,7 @@ class Add extends React.PureComponent {
   
   
   submit = (event) => {
-    if (event.code !== 'Enter') return;
+    if (event.keyCode !== 13) return;
     
     const input = document.querySelector('.add__text');
     const text = input.value;

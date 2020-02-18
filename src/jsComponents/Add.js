@@ -11,11 +11,13 @@ class Add extends React.PureComponent {
   
   
   submit = (event) => {
-    const input = document.querySelector('.add__text')
     if (event.code !== 'Enter') return;
+    
+    const input = document.querySelector('.add__text');
     const text = input.value;
-    input.value = '';
     if (text === '') return;
+    input.value = '';
+    
     this.props.onAddTask(text);
   }
 
@@ -28,6 +30,7 @@ class Add extends React.PureComponent {
           type='text'
           placeholder="What needs to be done?"
           spellCheck="false"
+          autoFocus={true}
           onFocus={this.addSubmitListener}
           onBlur={this.removeSubmitListener}
         />

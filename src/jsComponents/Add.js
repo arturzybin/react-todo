@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-class Add extends React.PureComponent {
-  addSubmitListener = () => {
-    document.addEventListener('keypress', this.submit)
+
+function Add(props) {
+  
+  const addSubmitListener = () => {
+    document.addEventListener('keypress', submit)
   }
-  removeSubmitListener = () => {
-    document.removeEventListener('keypress', this.submit)
+  const removeSubmitListener = () => {
+    document.removeEventListener('keypress', submit)
   }
   
   
-  submit = (event) => {
+  const submit = (event) => {
     if (event.keyCode !== 13) return;
     
     const input = document.querySelector('.add__text');
@@ -18,25 +20,23 @@ class Add extends React.PureComponent {
     if (text === '') return;
     input.value = '';
     
-    this.props.onAddTask(text);
+    props.onAddTask(text);
   }
 
 
-  render() {
-    return (
-      <div className="add">
-        <input
-          className="add__text"
-          type='text'
-          placeholder="What needs to be done?"
-          spellCheck="false"
-          autoFocus={true}
-          onFocus={this.addSubmitListener}
-          onBlur={this.removeSubmitListener}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className="add">
+      <input
+        className="add__text"
+        type='text'
+        placeholder="What needs to be done?"
+        spellCheck="false"
+        autoFocus={true}
+        onFocus={addSubmitListener}
+        onBlur={removeSubmitListener}
+      />
+    </div>
+  )
 }
 
 

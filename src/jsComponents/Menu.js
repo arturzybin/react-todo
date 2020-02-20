@@ -7,7 +7,8 @@ class Menu extends React.PureComponent {
     const target = event.target;
     if (target.tagName.toLowerCase() !== 'button') return;
     
-    document.querySelectorAll('.menu__choose-category button').forEach(item => item.classList.remove('choosen'));
+    document.querySelectorAll('.menu__choose-category button')
+      .forEach(item => item.classList.remove('choosen'));
     target.classList.add('choosen');
     
     const category = target.dataset.value;

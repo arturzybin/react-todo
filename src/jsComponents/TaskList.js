@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { Task } from './Task.js'
 
 
-class TaskList extends React.Component {
-  renderTasks = () => {
-    const tasks = this.sortTasks(this.props.data, this.props.category);
+function TaskList(props) {
+  
+  const renderTasks = () => {
+    const tasks = sortTasks(props.data, props.category);
     let tasksListTemplate = [];
     
     tasksListTemplate = tasks.map((item) => {
@@ -13,9 +14,9 @@ class TaskList extends React.Component {
         <Task
           key={item.id}
           data={item}
-          onTaskToggle={this.props.onTaskToggle}
-          onTextChange={this.props.onTextChange}
-          onDeleteTask={this.props.onDeleteTask}
+          onTaskToggle={props.onTaskToggle}
+          onTextChange={props.onTextChange}
+          onDeleteTask={props.onDeleteTask}
         />
       )
     })
@@ -24,7 +25,7 @@ class TaskList extends React.Component {
   }
   
   
-  sortTasks = (tasks, category) => {
+  const sortTasks = (tasks, category) => {
     const completedTasks = tasks.filter((item) => item.done);
     const activeTasks = tasks.filter((item) => !item.done);
     
@@ -44,18 +45,18 @@ class TaskList extends React.Component {
   }
   
   
-  render() {
-    return(
-      <div className="todo__tasklist">
-        {this.renderTasks()}
-      </div>
-    )
-  }
+  return (
+    <div className="todo__tasklist">
+      {renderTasks()}
+    </div>
+  )
 }
+
 
 TaskList.propTypes = {
   data: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
 }
+
 
 export { TaskList }

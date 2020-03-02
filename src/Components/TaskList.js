@@ -43,9 +43,15 @@ function TaskList(props) {
   }
   
   
+  let taskList = renderTasks();
+  if (!taskList.length && props.category !== 'all') {
+     taskList = (
+        <div className="nothing-there">Nothing there</div>
+     )
+  }
   return (
-    <div className="todo__tasklist">
-      {renderTasks()}
+    <div>
+      {taskList}
     </div>
   )
 }

@@ -45,9 +45,12 @@ class App extends React.Component {
     const index = tasks.findIndex((task) => task.id === id);
     
     tasks.splice(index, 1);
+
+    const selectedCategory = tasks.length ? this.state.selectedCategory : 'all';
     
     this.setState({
-      tasks: tasks,
+      tasks,
+      selectedCategory
     })
   }
   
@@ -85,8 +88,12 @@ class App extends React.Component {
   clearCompleted = () => {
     let tasks = this.state.tasks.slice();
     tasks = tasks.filter(task => !task.isCompleted)
+
+    const selectedCategory = tasks.length ? this.state.selectedCategory : 'all';
+
     this.setState({
-      tasks: tasks,
+      tasks,
+      selectedCategory
     })
   }
   
@@ -102,7 +109,7 @@ class App extends React.Component {
     });
     
     this.setState({
-      tasks: tasks,
+      tasks,
     })
   }
   
@@ -118,7 +125,7 @@ class App extends React.Component {
     });
     
     this.setState({
-      tasks: tasks,
+      tasks,
     })
   }
   

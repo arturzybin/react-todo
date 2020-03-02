@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Task extends React.Component {
   
-  handleDoubleClick = (event) => {
+  handleTextChange = (event) => {
     // use closures because it is the cleanest way to remove keypress event listener
     const applyNewText = (event) => {
       if (event.keyCode && event.keyCode !== 13) return;
@@ -68,7 +68,7 @@ class Task extends React.Component {
         
         <div
           className={"task__text" + textClassName}
-          onDoubleClick={this.handleDoubleClick}
+          onClick={this.handleTextChange}
         >{text}</div>
         
         <button

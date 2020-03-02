@@ -8,7 +8,7 @@ class Menu extends React.PureComponent {
     if (target.tagName.toLowerCase() !== 'button') return;
     
     document.querySelectorAll('.menu__choose-category button')
-      .forEach(item => item.classList.remove('choosen'));
+      .forEach(button => button.classList.remove('choosen'));
     target.classList.add('choosen');
     
     const category = target.dataset.value;
@@ -33,7 +33,7 @@ class Menu extends React.PureComponent {
           <input
             className="checkbox__input"
             type='checkbox'
-            checked={this.props.allSelected}
+            checked={this.props.isAllSelected}
             onChange={this.handleSelectAll}
           />
           <span className="checkbox__checkmark">&#10004;</span>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 class Task extends React.Component {
   
   handleDoubleClick = (event) => {
@@ -24,7 +25,7 @@ class Task extends React.Component {
       span.textContent = newText;
       input.closest('.task').replaceChild(span, input);
       
-      const {id} = this.props.data;
+      const {id} = this.props.taskData;
       this.props.onTextChange(id, newText);
     }
   }
@@ -32,15 +33,15 @@ class Task extends React.Component {
   
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.data.done !== this.props.data.done
-      || nextProps.data.text !== this.props.data.text
+      nextProps.taskData.isCompleted !== this.props.taskData.isCompleted
+      || nextProps.taskData.text !== this.props.taskData.text
     )
   }
 
 
   render() {
-    const {id, text, done} = this.props.data;
-    const textClassName = (done ? ' task__text_done' : '');
+    const {id, text, isCompleted} = this.props.taskData;
+    const textClassName = (isCompleted ? ' task__text_completed' : '');
     
     return(
       <div className="task">
@@ -48,13 +49,16 @@ class Task extends React.Component {
           <input
             className="checkbox__input"
             type='checkbox'
-            checked={done}
+            checked={isCompleted}
             onChange={() => this.props.onTaskToggle(id)}
           />
           <span className="checkbox__checkmark">&#10004;</span>
         </label>
         
-        <div className={"task__text" + textClassName} onDoubleClick={this.handleDoubleClick}>{text}</div>
+        <div
+          className={"task__text" + textClassName}
+          onDoubleClick={this.handleDoubleClick}
+        >{text}</div>
         
         <button
           className="task__destroy"
@@ -66,10 +70,10 @@ class Task extends React.Component {
 }
 
 Task.propTypes = {
-  data: PropTypes.shape({
+  taskData: PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
   }),
   onTaskToggle: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,

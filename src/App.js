@@ -1,147 +1,143 @@
 import React from 'react';
 import './App.scss';
 
-import { TaskList } from './jsComponents/TaskList.js';
-import { Add } from './jsComponents/Add.js';
-import { Menu } from './jsComponents/Menu.js';
+import { TaskList } from './Components/TaskList.js';
+import { Add } from './Components/Add.js';
+import { Menu } from './Components/Menu.js';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      nextId: 0,
-      choosenCategory: 'all',
-      tasks: [],
-    }
+  state = {
+    selectedCategory: 'all',
+    tasks: [],
   }
-  
-  
-  toggleTask = (id) => {
-    const newTasks = this.state.tasks.slice();
-    const index = newTasks.findIndex((item) => item.id === id);
-    
-    newTasks[index] = {
-      ...newTasks[index],
-      done: !newTasks[index].done,
-    };
-    
-    this.setState({
-      tasks: newTasks,
-    })
-  }
-  
-  
-  changeTaskText = (id, text) => {
-    const newTasks = this.state.tasks.slice();
-    const index = newTasks.findIndex((item) => item.id === id);
 
-    newTasks[index] = {
-      ...newTasks[index],
+
+  addTask = (text) => {
+    const id = Date.now();
+    const tasks = this.state.tasks.slice();
+    tasks.push({
+      id: id,
       text: text,
-    };
+      isCompleted: false,
+    })
     
     this.setState({
-      tasks: newTasks,
+      nextId: id + 1,
+      tasks: tasks,
     })
   }
   
   
   deleteTask = (id) => {
-    const newTasks = this.state.tasks.slice();
-    const index = newTasks.findIndex((item) => item.id === id);
+    const tasks = this.state.tasks.slice();
+    const index = tasks.findIndex((task) => task.id === id);
     
-    newTasks.splice(index, 1);
+    tasks.splice(index, 1);
     
     this.setState({
-      tasks: newTasks,
+      tasks: tasks,
     })
   }
   
   
-  addTask = (text) => {
-    const id = this.state.nextId;
-    const newTasks = this.state.tasks.slice();
-    newTasks.push({
-      id: id,
+  toggleTask = (id) => {
+    const tasks = this.state.tasks.slice();
+    const index = tasks.findIndex((task) => task.id === id);
+    
+    tasks[index] = {
+      ...tasks[index],
+      isCompleted: !tasks[index].isCompleted,
+    };
+    
+    this.setState({
+      tasks: tasks,
+    })
+  }
+  
+  
+  changeTaskText = (id, text) => {
+    const tasks = this.state.tasks.slice();
+    const index = tasks.findIndex((task) => task.id === id);
+
+    tasks[index] = {
+      ...tasks[index],
       text: text,
-      done: false,
-    })
+    };
     
     this.setState({
-      nextId: id + 1,
-      tasks: newTasks,
-    })
-  }
-  
-  
-  changeCategory = (category) => {
-    this.setState({
-      choosenCategory: category,
+      tasks: tasks,
     })
   }
   
   
   clearCompleted = () => {
-    let newTasks = this.state.tasks.slice();
-    newTasks = newTasks.filter(item => !item.done)
+    let tasks = this.state.tasks.slice();
+    tasks = tasks.filter(task => !task.isCompleted)
     this.setState({
-      tasks: newTasks,
+      tasks: tasks,
     })
   }
   
   
   selectAll = () => {
-    let newTasks = this.state.tasks.slice();
+    let tasks = this.state.tasks.slice();
     
-    newTasks = newTasks.map(item => {
+    tasks = tasks.map(task => {
       return {
-        ...item,
-        done: true,
+        ...task,
+        isCompleted: true,
       };
     });
     
     this.setState({
-      tasks: newTasks,
+      tasks: tasks,
     })
   }
   
   
   unselectAll = () => {
-    let newTasks = this.state.tasks.slice();
+    let tasks = this.state.tasks.slice();
     
-    newTasks = newTasks.map(item => {
+    tasks = tasks.map(task => {
       return {
-        ...item,
-        done: false,
+        ...task,
+        isCompleted: false,
       };
     });
     
     this.setState({
-      tasks: newTasks,
+      tasks: tasks,
     })
   }
   
-  
-  checkAllSelected = () => {
+
+  // needs for Menu to toggle 'select all' checkbox
+  checkIsAllSelected = () => {
     if (this.state.tasks.length === 0){
       return false;
     }
     
-    for (let item of this.state.tasks) {
-      if ( !item.done) {
+    for (let task of this.state.tasks) {
+      if ( !task.isCompleted) {
         return false;
       }
     }
     
     return true;
   }
-  
+
+
+  changeCategory = (category) => {
+    this.setState({
+      selectedCategory: category,
+    })
+  }
   
   
   render() {
-    const allSelected = this.checkAllSelected();
-    const {tasks, choosenCategory} = this.state;
+    const isAllSelected = this.checkIsAllSelected();
+    const {tasks, selectedCategory} = this.state;
     
     return(      
       <div className="todo">
@@ -151,7 +147,7 @@ class App extends React.Component {
             onClearCompleted={this.clearCompleted}
             onSelectAll={this.selectAll}
             onUnselectAll={this.unselectAll}
-            allSelected={allSelected}
+            isAllSelected={isAllSelected}
           />
           : null
         }
@@ -161,7 +157,7 @@ class App extends React.Component {
           
           <TaskList
             data={tasks}
-            category={choosenCategory}
+            category={selectedCategory}
             onTaskToggle={this.toggleTask}
             onTextChange={this.changeTaskText}
             onDeleteTask={this.deleteTask}

@@ -5,18 +5,13 @@ import PropTypes from 'prop-types';
 class Task extends React.Component {
   
   handleDoubleClick = (event) => {
-    const span = event.target;
-    const oldText = span.textContent;
-    
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.classList.add('task__text');
-    input.value = oldText;
-    span.closest('.task').replaceChild(input, span);
-    input.focus();
-    
-    
-    input.onblur = () => {
+    // use closures because it is the cleanest way to remove keypress event listener
+    const applyNewText = (event) => {
+      if (event.keyCode && event.keyCode !== 13) return;
+
+      input.onblur = null;
+      document.removeEventListener('keypress', applyNewText);
+
       let newText = input.value;
       if (newText === '') {
         newText = oldText;
@@ -28,6 +23,22 @@ class Task extends React.Component {
       const {id} = this.props.taskData;
       this.props.onTextChange(id, newText);
     }
+
+
+    const span = event.target;
+    const oldText = span.textContent;
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.classList.add('task__text');
+    input.value = oldText;
+    input.spellcheck = false;
+    span.closest('.task').replaceChild(input, span);
+    input.focus();
+    
+    
+    input.onblur = applyNewText;
+    document.addEventListener('keypress', applyNewText);
   }
   
   

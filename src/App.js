@@ -13,6 +13,17 @@ class App extends React.Component {
   }
 
 
+  componentDidMount() {
+     const storedTasks =JSON.parse(localStorage.getItem('tasks'));
+     if (!storedTasks) return;
+     this.setState( {tasks: storedTasks} );
+  }
+
+  componentDidUpdate() {
+     localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+  }
+
+
   addTask = (text) => {
     const id = Date.now();
     const tasks = this.state.tasks.slice();

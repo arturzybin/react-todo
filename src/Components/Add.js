@@ -16,6 +16,8 @@ function Add(props) {
     if (event.keyCode !== 13) return;
     
     const input = document.querySelector('.add__text');
+    if (document.activeElement !== input) return;
+    
     const text = input.value;
     if (text === '') return;
     input.value = '';

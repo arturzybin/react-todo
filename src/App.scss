@@ -60,7 +60,7 @@
 
         transition: .1s;
 
-        opacity: 0;
+        opacity: .5;
         border: none;
         outline: none;
         background: none;
@@ -372,12 +372,5 @@
 
             height: 30px;
         }
-    }
-}
-
-//------------------------------------------------------------------------------------
-@media (pointer: none) {
-    .task__destroy {
-        opacity: 1;
     }
 }

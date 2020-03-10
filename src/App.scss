@@ -1,376 +1,384 @@
 * {
-    font-family: 'Sriracha', cursive;
+   font-family: 'Sriracha', cursive;
 
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 
 .todo {
-    position: absolute;
-    top: 20vh;
-    right: 0;
-    left: 0;
+   position: absolute;
+   top: 20vh;
+   right: 0;
+   left: 0;
 
-    width: 95%;
-    max-width: 600px;
-    margin: auto;
+   width: 95%;
+   max-width: 600px;
+   margin: auto;
 
-    &__body {
-        box-shadow: 0 0 3px #999;
-    }
+   &__body {
+      box-shadow: 0 0 3px #999;
+   }
 }
 
 
 //------------------------------------------------------------------------------------
 .task {
-    line-height: 50px;
+   line-height: 50px;
 
-    width: 100%;
-    min-height: 50px;
+   width: 100%;
+   min-height: 50px;
 
-    border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid #ededed;
 
-    &__text {
-        font-size: 25px;
-        line-height: 50px;
+   &__text {
+      font-size: 25px;
+      line-height: 50px;
 
-        display: inline-block;
+      display: inline-block;
 
-        width: calc(100% - 100px);
+      width: calc(100% - 100px);
 
-        word-wrap: break-word;
+      word-wrap: break-word;
 
-        border: none;
-        outline: none;
-        background-color: transparent;
+      border: none;
+      outline: none;
+      background-color: transparent;
 
-        &_completed {
-            text-decoration: line-through;
-            pointer-events: none;
+      &_completed {
+         text-decoration: line-through;
+         pointer-events: none;
 
-            color: #6e6e6e;
-        }
-    }
+         color: #6e6e6e;
+      }
+   }
 
-    &__destroy {
-        position: absolute;
-        right: 0;
+   &__destroy {
+      position: absolute;
+      right: 0;
 
-        width: 50px;
-        height: 50px;
+      width: 50px;
+      height: 50px;
 
-        transition: .1s;
+      cursor: pointer;
+      transition: .1s;
 
-        opacity: .5;
-        border: none;
-        outline: none;
-        background: none;
+      opacity: .5;
+      border: none;
+      outline: none;
+      background: none;
 
-        &::before,
-        &::after {
-            position: absolute;
-            left: 15px;
+      &::before,
+      &::after {
+         position: absolute;
+         left: 15px;
 
-            display: inline-block;
+         display: inline-block;
 
-            width: 20px;
-            height: 2px;
+         width: 20px;
+         height: 2px;
 
-            content: '';
-            transform: rotate(-45deg);
+         content: '';
+         transform: rotate(-45deg);
 
-            background: #da4b4d;
-        }
-        &::after {
-            transform: rotate(45deg);
-        }
-    }
-    &:hover .task__destroy {
-        transition: .1s;
+         background: #da4b4d;
+      }
+      &::after {
+         transform: rotate(45deg);
+      }
+   }
+   &:hover .task__destroy {
+      transition: .1s;
 
-        opacity: 1;
-    }
+      opacity: 1;
+   }
 }
 
 
 //------------------------------------------------------------------------------------
 .checkbox {
-    position: relative;
+   position: relative;
 
-    display: inline-block;
+   display: inline-block;
 
-    width: 50px;
-    height: 50px;
+   width: 50px;
+   height: 50px;
 
-    user-select: none;
-    vertical-align: top;
+   cursor: pointer;
+   user-select: none;
+   vertical-align: top;
 
-    &__input {
-        opacity: 0;
-    }
-    &__checkmark {
-        font-size: 0;
-        line-height: 20px;
+   &__input {
+      opacity: 0;
+   }
+   &__checkmark {
+      font-size: 0;
+      line-height: 20px;
 
-        position: absolute;
-        top: 15px;
-        left: 15px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
 
-        display: block;
+      display: block;
 
-        width: 20px;
-        height: 20px;
+      width: 20px;
+      height: 20px;
 
-        transition: .1s;
+      transition: .1s;
 
-        color: #4bb543;
-        border: 1px solid #c8c8c8;
-        border-radius: 10px;
-    }
-    &__input:checked + &__checkmark {
-        font-size: 28px;
+      color: #4bb543;
+      border: 1px solid #c8c8c8;
+      border-radius: 10px;
+   }
+   &__input:checked + &__checkmark {
+      font-size: 28px;
 
-        transition: .1s;
-    }
-    &__select-all-label {
-        font-size: 10px;
+      transition: .1s;
+   }
+   &__select-all-label {
+      font-size: 10px;
 
-        position: absolute;
-        top: 13px;
-        left: 40px;
+      position: absolute;
+      top: 13px;
+      left: 40px;
 
-        text-align: center;
-    }
+      text-align: center;
+   }
 }
 
 
 
 //------------------------------------------------------------------------------------
 .add {
-    line-height: 50px;
+   line-height: 50px;
 
-    width: 100%;
-    height: 50px;
+   width: 100%;
+   height: 50px;
 
-    box-shadow: 0 4px 5px #aaa;
+   box-shadow: 0 4px 5px #aaa;
 
-    &__text {
-        font-size: 25px;
-        line-height: 50px;
+   &__text {
+      font-size: 25px;
+      line-height: 50px;
 
-        width: 100%;
-        padding: 0 10px;
+      width: 100%;
+      padding: 0 10px;
 
-        border: none;
-        outline: none;
+      border: none;
+      outline: none;
 
-        &::placeholder {
-            opacity: .5;
-        }
-    }
+      &::placeholder {
+         opacity: .5;
+      }
+   }
 }
 
 //------------------------------------------------------------------------------------
 .menu {
-    position: relative;
+   position: relative;
 
-    margin-bottom: 5px;
+   margin-bottom: 5px;
 
-    &__choose-category {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
+   &__choose-category {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
 
-        width: 330px;
-        margin: auto;
+      width: 330px;
+      margin: auto;
 
-        & button {
-            font-size: 15px;
+      & button {
+         font-size: 15px;
 
-            width: 100px;
-            height: 50px;
-            margin: 0 5px;
+         width: 100px;
+         height: 50px;
+         margin: 0 5px;
 
-            border: none;
-            border-radius: 2px;
-            outline: none;
-            background: none;
-            box-shadow: 0 0 5px #aaa;
-        }
+         cursor: pointer;
 
-        & button.choosen {
-            box-shadow: none;
-        }
-    }
+         border: none;
+         border-radius: 2px;
+         outline: none;
+         background: none;
+         box-shadow: 0 0 5px #aaa;
+      }
 
-    &__clear-completed {
-        font-size: 10px;
+      & button.choosen {
+         cursor: default;
 
-        position: absolute;
-        right: 0;
-        bottom: 0;
+         box-shadow: none;
+      }
+   }
 
-        height: 30px;
+   &__clear-completed {
+      font-size: 10px;
 
-        border: none;
-        border-radius: 3px;
-        outline: none;
-        background: none;
-        box-shadow: none;
+      position: absolute;
+      right: 0;
+      bottom: 0;
 
-        &:hover {
-            box-shadow: 0 0 3px #aaa;
-        }
+      height: 30px;
 
-        &:active {
-            box-shadow: 0 0 1px #aaa;
-        }
-    }
+      cursor: pointer;
+
+      border: none;
+      border-radius: 3px;
+      outline: none;
+      background: none;
+      box-shadow: none;
+
+      &:hover {
+         box-shadow: 0 0 3px #aaa;
+      }
+
+      &:active {
+         box-shadow: 0 0 1px #aaa;
+      }
+   }
 }
 
 //------------------------------------------------------------------------------------
 .nothing-there {
-    font-size: 18px;
-    line-height: 50px;
+   font-size: 18px;
+   line-height: 50px;
 
-    user-select: none;
-    animation: bounce-top .9s both;
-    text-align: center;
+   user-select: none;
+   animation: bounce-top .9s both;
+   text-align: center;
 
-    color: #ccc;
+   color: #ccc;
 }
 @keyframes bounce-top {
-    0% {
-        transform: translateY(-45px);
-        animation-timing-function: ease-in;
+   0% {
+      transform: translateY(-45px);
+      animation-timing-function: ease-in;
 
-        opacity: 1;
-    }
-    24% {
-        opacity: 1;
-    }
-    40% {
-        transform: translateY(-24px);
-        animation-timing-function: ease-in;
-    }
-    65% {
-        transform: translateY(-12px);
-        animation-timing-function: ease-in;
-    }
-    82% {
-        transform: translateY(-6px);
-        animation-timing-function: ease-in;
-    }
-    93% {
-        transform: translateY(-4px);
-        animation-timing-function: ease-in;
-    }
-    25%,
-    55%,
-    75%,
-    87% {
-        transform: translateY(0px);
-        animation-timing-function: ease-out;
-    }
-    100% {
-        transform: translateY(0px);
-        animation-timing-function: ease-out;
+      opacity: 1;
+   }
+   24% {
+      opacity: 1;
+   }
+   40% {
+      transform: translateY(-24px);
+      animation-timing-function: ease-in;
+   }
+   65% {
+      transform: translateY(-12px);
+      animation-timing-function: ease-in;
+   }
+   82% {
+      transform: translateY(-6px);
+      animation-timing-function: ease-in;
+   }
+   93% {
+      transform: translateY(-4px);
+      animation-timing-function: ease-in;
+   }
+   25%,
+   55%,
+   75%,
+   87% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
+   }
+   100% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
 
-        opacity: 1;
-    }
+      opacity: 1;
+   }
 }
 
 //------------------------------------------------------------------------------------
 @media screen and (max-width: 500px) {
-    .todo {
-        top: 10vh;
-    }
+   .todo {
+      top: 10vh;
+   }
 
 
-    .task {
-        line-height: 40px;
+   .task {
+      line-height: 40px;
 
-        min-height: 40px;
+      min-height: 40px;
 
-        &__text {
-            font-size: 20px;
-            line-height: 40px;
+      &__text {
+         font-size: 20px;
+         line-height: 40px;
 
-            width: calc(100% - 80px);
-        }
+         width: calc(100% - 80px);
+      }
 
-        &__destroy {
-            width: 40px;
-            height: 40px;
+      &__destroy {
+         width: 40px;
+         height: 40px;
 
-            &::before,
-            &::after {
-                left: 13px;
+         &::before,
+         &::after {
+            left: 13px;
 
-                width: 15px;
-            }
-        }
-    }
-
-
-    .checkbox {
-        width: 40px;
-        height: 40px;
-
-        &__checkmark {
-            line-height: 20px;
-
-            top: 10px;
-            left: 10px;
-
-            width: 20px;
-            height: 20px;
-
-            border-radius: 10px;
-        }
-        &__input:checked + &__checkmark {
-            font-size: 25px;
-        }
-        &__select-all-label {
-            font-size: 8px;
-
-            top: 10px;
-            left: 35px;
-        }
-    }
+            width: 15px;
+         }
+      }
+   }
 
 
-    .add {
-        line-height: 40px;
+   .checkbox {
+      width: 40px;
+      height: 40px;
 
-        height: 40px;
+      &__checkmark {
+         line-height: 20px;
 
-        &__text {
-            font-size: 20px;
-            line-height: 40px;
-        }
-    }
+         top: 10px;
+         left: 10px;
+
+         width: 20px;
+         height: 20px;
+
+         border-radius: 10px;
+      }
+      &__input:checked + &__checkmark {
+         font-size: 25px;
+      }
+      &__select-all-label {
+         font-size: 8px;
+
+         top: 10px;
+         left: 35px;
+      }
+   }
 
 
-    .menu {
-        &__choose-category {
-            width: 198px;
+   .add {
+      line-height: 40px;
 
-            & button {
-                font-size: 10px;
+      height: 40px;
 
-                width: 60px;
-                height: 35px;
-                margin: 0 3px;
+      &__text {
+         font-size: 20px;
+         line-height: 40px;
+      }
+   }
 
-                box-shadow: 0 0 5px #aaa;
-            }
-        }
 
-        &__clear-completed {
-            font-size: 8px;
+   .menu {
+      &__choose-category {
+         width: 198px;
 
-            height: 30px;
-        }
-    }
+         & button {
+            font-size: 10px;
+
+            width: 60px;
+            height: 35px;
+            margin: 0 3px;
+
+            box-shadow: 0 0 5px #aaa;
+         }
+      }
+
+      &__clear-completed {
+         font-size: 8px;
+
+         height: 30px;
+      }
+   }
 }

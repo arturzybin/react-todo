@@ -1,4 +1,4 @@
-# Movie-searcher
+# React-todo
 
 Elegant React todo app. Try it [here](https://arturzybin.github.io/react-todo/)
 

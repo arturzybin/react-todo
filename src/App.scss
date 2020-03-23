@@ -1,7 +1,31 @@
+@function rem($px) {
+   @return #{$px/16}rem;
+}
+
 * {
    font-family: 'Sriracha', cursive;
 
    box-sizing: border-box;
+}
+@media screen and (min-width: 2000px) {
+   html {
+      font-size: 20px;
+   }
+}
+@media screen and (min-width: 2500px) {
+   html {
+      font-size: 25px;
+   }
+}
+@media screen and (min-width: 3000px) {
+   html {
+      font-size: 30px;
+   }
+}
+@media screen and (min-width: 4000px) {
+   html {
+      font-size: 40px;
+   }
 }
 
 .todo {
@@ -11,31 +35,31 @@
    left: 0;
 
    width: 95%;
-   max-width: 600px;
+   max-width: rem(600);
    margin: auto;
 
    &__body {
-      box-shadow: 0 0 3px #999;
+      box-shadow: 0 0 rem(3) #999;
    }
 }
 
 
-//------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 .task {
-   line-height: 50px;
+   line-height: rem(50);
 
    width: 100%;
-   min-height: 50px;
+   min-height: rem(50);
 
-   border-bottom: 1px solid #ededed;
+   border-bottom: rem(1) solid #ededed;
 
    &__text {
-      font-size: 25px;
-      line-height: 50px;
+      font-size: rem(25);
+      line-height: rem(50);
 
       display: inline-block;
 
-      width: calc(100% - 100px);
+      width: calc(100% - rem(100));
 
       word-wrap: break-word;
 
@@ -55,8 +79,8 @@
       position: absolute;
       right: 0;
 
-      width: 50px;
-      height: 50px;
+      width: rem(50);
+      height: rem(50);
 
       cursor: pointer;
       transition: .1s;
@@ -69,12 +93,12 @@
       &::before,
       &::after {
          position: absolute;
-         left: 15px;
+         left: rem(15);
 
          display: inline-block;
 
-         width: 20px;
-         height: 2px;
+         width: rem(20);
+         height: rem(2);
 
          content: '';
          transform: rotate(-45deg);
@@ -93,14 +117,14 @@
 }
 
 
-//------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 .checkbox {
    position: relative;
 
    display: inline-block;
 
-   width: 50px;
-   height: 50px;
+   width: rem(50);
+   height: rem(50);
 
    cursor: pointer;
    user-select: none;
@@ -111,34 +135,34 @@
    }
    &__checkmark {
       font-size: 0;
-      line-height: 20px;
+      line-height: rem(20);
 
       position: absolute;
-      top: 15px;
-      left: 15px;
+      top: rem(15);
+      left: rem(15);
 
       display: block;
 
-      width: 20px;
-      height: 20px;
+      width: rem(20);
+      height: rem(20);
 
       transition: .1s;
 
       color: #4bb543;
-      border: 1px solid #c8c8c8;
-      border-radius: 10px;
+      border: rem(1) solid #c8c8c8;
+      border-radius: rem(10);
    }
    &__input:checked + &__checkmark {
-      font-size: 28px;
+      font-size: rem(28);
 
       transition: .1s;
    }
    &__select-all-label {
-      font-size: 10px;
+      font-size: rem(10);
 
       position: absolute;
-      top: 13px;
-      left: 40px;
+      top: rem(13);
+      left: rem(40);
 
       text-align: center;
    }
@@ -146,21 +170,21 @@
 
 
 
-//------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 .add {
-   line-height: 50px;
+   line-height: rem(50);
 
    width: 100%;
-   height: 50px;
+   height: rem(50);
 
-   box-shadow: 0 4px 5px #aaa;
+   box-shadow: 0 rem(4) rem(5) #aaa;
 
    &__text {
-      font-size: 25px;
-      line-height: 50px;
+      font-size: rem(25);
+      line-height: rem(50);
 
       width: 100%;
-      padding: 0 10px;
+      padding: 0 rem(10);
 
       border: none;
       outline: none;
@@ -171,11 +195,11 @@
    }
 }
 
-//------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 .menu {
    position: relative;
 
-   margin-bottom: 5px;
+   margin-bottom: rem(5);
 
    &__choose-category {
       position: absolute;
@@ -183,23 +207,23 @@
       right: 0;
       left: 0;
 
-      width: 330px;
+      width: rem(330);
       margin: auto;
 
       & button {
-         font-size: 15px;
+         font-size: rem(15);
 
-         width: 100px;
-         height: 50px;
-         margin: 0 5px;
+         width: rem(100);
+         height: rem(50);
+         margin: 0 rem(5);
 
          cursor: pointer;
 
          border: none;
-         border-radius: 2px;
+         border-radius: rem(2);
          outline: none;
          background: none;
-         box-shadow: 0 0 5px #aaa;
+         box-shadow: 0 0 rem(5) #aaa;
       }
 
       & button.choosen {
@@ -210,36 +234,36 @@
    }
 
    &__clear-completed {
-      font-size: 10px;
+      font-size: rem(10);
 
       position: absolute;
       right: 0;
       bottom: 0;
 
-      height: 30px;
+      height: rem(30);
 
       cursor: pointer;
 
       border: none;
-      border-radius: 3px;
+      border-radius: rem(3);
       outline: none;
       background: none;
       box-shadow: none;
 
       &:hover {
-         box-shadow: 0 0 3px #aaa;
+         box-shadow: 0 0 rem(3) #aaa;
       }
 
       &:active {
-         box-shadow: 0 0 1px #aaa;
+         box-shadow: 0 0 rem(1) #aaa;
       }
    }
 }
 
-//------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 .nothing-there {
-   font-size: 18px;
-   line-height: 50px;
+   font-size: rem(18);
+   line-height: rem(50);
 
    user-select: none;
    animation: bounce-top .9s both;
@@ -288,97 +312,97 @@
    }
 }
 
-//------------------------------------------------------------------------------------
-@media screen and (max-width: 500px) {
+//---------------------------------------------------------------------------------------------------------------------------------------
+@media screen and (max-width: rem(500)) {
    .todo {
       top: 10vh;
    }
 
 
    .task {
-      line-height: 40px;
+      line-height: rem(40);
 
-      min-height: 40px;
+      min-height: rem(40);
 
       &__text {
-         font-size: 20px;
-         line-height: 40px;
+         font-size: rem(20);
+         line-height: rem(40);
 
-         width: calc(100% - 80px);
+         width: calc(100% - rem(80));
       }
 
       &__destroy {
-         width: 40px;
-         height: 40px;
+         width: rem(40);
+         height: rem(40);
 
          &::before,
          &::after {
-            left: 13px;
+            left: rem(13);
 
-            width: 15px;
+            width: rem(15);
          }
       }
    }
 
 
    .checkbox {
-      width: 40px;
-      height: 40px;
+      width: rem(40);
+      height: rem(40);
 
       &__checkmark {
-         line-height: 20px;
+         line-height: rem(20);
 
-         top: 10px;
-         left: 10px;
+         top: rem(10);
+         left: rem(10);
 
-         width: 20px;
-         height: 20px;
+         width: rem(20);
+         height: rem(20);
 
-         border-radius: 10px;
+         border-radius: rem(10);
       }
       &__input:checked + &__checkmark {
-         font-size: 25px;
+         font-size: rem(25);
       }
       &__select-all-label {
-         font-size: 8px;
+         font-size: rem(8);
 
-         top: 10px;
-         left: 35px;
+         top: rem(10);
+         left: rem(35);
       }
    }
 
 
    .add {
-      line-height: 40px;
+      line-height: rem(40);
 
-      height: 40px;
+      height: rem(40);
 
       &__text {
-         font-size: 20px;
-         line-height: 40px;
+         font-size: rem(20);
+         line-height: rem(40);
       }
    }
 
 
    .menu {
       &__choose-category {
-         width: 198px;
+         width: rem(198);
 
          & button {
-            font-size: 10px;
+            font-size: rem(10);
 
-            width: 60px;
-            height: 35px;
-            margin: 0 3px;
+            width: rem(60);
+            height: rem(35);
+            margin: 0 rem(3);
 
-            box-shadow: 0 0 5px #aaa;
+            box-shadow: 0 0 rem(5) #aaa;
          }
       }
 
       &__clear-completed {
-         font-size: 8px;
+         font-size: rem(8);
 
-         height: 30px;
+         height: rem(30);
       }
    }
 }

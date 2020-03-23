@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Menu extends React.PureComponent {
-  
   handleCategoryChange = (event) => {
     const target = event.target;
     if (target.tagName.toLowerCase() !== 'button') return;
@@ -12,16 +11,16 @@ class Menu extends React.PureComponent {
     target.classList.add('choosen');
     
     const category = target.dataset.value;
-    this.props.onChangeCategory(category);
+    this.props.handleChangeCategory(category);
   }
   
   
   handleSelectAll = (event) => {
     const checked = event.target.checked;
     if (checked) {
-      this.props.onSelectAll();
+      this.props.handleSelectAll();
     } else {
-      this.props.onUnselectAll();
+      this.props.handleUnselectAll();
     }
   }
 
@@ -37,7 +36,7 @@ class Menu extends React.PureComponent {
             onChange={this.handleSelectAll}
           />
           <span className="checkbox__checkmark">&#10004;</span>
-          <span className="checkbox__select-all-label">Select<br/>all</span>
+          <span className="checkbox__select-all-label">Select<br/>all ({this.props.tasksCount})</span>
         </label>
         
         <nav className="menu__choose-category" onClick={this.handleCategoryChange}>
@@ -48,7 +47,7 @@ class Menu extends React.PureComponent {
         
         <button
           className="menu__clear-completed"
-          onClick={this.props.onClearCompleted}
+          onClick={this.props.handleClearCompleted}
         >
           Clear<br/>completed
         </button>
@@ -59,8 +58,12 @@ class Menu extends React.PureComponent {
 
 
 Menu.propTypes = {
-  onChangeCategory: PropTypes.func.isRequired,
-  onClearCompleted: PropTypes.func.isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
+  handleClearCompleted: PropTypes.func.isRequired,
+  handleSelectAll: PropTypes.func.isRequired,
+  handleUnselectAll: PropTypes.func.isRequired,
+  isAllSelected: PropTypes.bool.isRequired,
+  tasksCount: PropTypes.number.isRequired
 }
 
 export {Menu};

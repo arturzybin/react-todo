@@ -161,11 +161,12 @@ class App extends React.Component {
       <div className="todo">
         {tasks.length
           ? <Menu
-            onChangeCategory={this.changeCategory}
-            onClearCompleted={this.clearCompleted}
-            onSelectAll={this.selectAll}
-            onUnselectAll={this.unselectAll}
+            handleChangeCategory={this.changeCategory}
+            handleClearCompleted={this.clearCompleted}
+            handleSelectAll={this.selectAll}
+            handleUnselectAll={this.unselectAll}
             isAllSelected={isAllSelected}
+            tasksCount={tasks.length}
           />
           : null
         }
